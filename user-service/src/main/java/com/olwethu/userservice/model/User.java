@@ -4,9 +4,11 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
+@Table(name="users")
 public class User {
 
     @Id
@@ -24,12 +26,17 @@ public class User {
     private String email;
 
     @Column(nullable = false)
-    private LocalDate creationDate;
+    private LocalDateTime creationDate;
+
+    @PrePersist
+    public void onCreate(){
+        creationDate=LocalDateTime.now();
+    }
 
     public User() {
     }
 
-    public User(LocalDate creationDate, String surname, String name, Long id, String email) {
+    public User(LocalDateTime creationDate, String surname, String name, Long id, String email) {
         this.creationDate = creationDate;
         this.surname = surname;
         this.name = name;
@@ -37,11 +44,11 @@ public class User {
         this.email = email;
     }
 
-    public LocalDate getCreationDate() {
+    public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
+    public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
 

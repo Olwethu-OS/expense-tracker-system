@@ -1,0 +1,6 @@
+//this is a build in feature of intellij that allows us to make http requests to our endponts
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
